@@ -1,0 +1,33 @@
+{
+  "generator-bcdk": {
+    "promptValues": {
+      "modules": {
+        "jenkins": {
+          "path": ".jenkins",
+          "namespace": "devex-bcgov-dap-tools",
+          "name": "jenkins",
+          "version": "1.0.0",
+          "environments": {
+            "build": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "dev": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "test": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "prod": {
+              "namespace": "devex-bcgov-dap-tools"
+            }
+          },
+          "jenkinsJobName": "_jenkins",
+          "github_owner": "esune",
+          "github_repo": "greenlight",
+          "jenkinsFilePath": ".jenkins/Jenkinsfile",
+          "uuid": "5b5606d9-1cbe-4dbe-8fd9-46305449748c"
+        }
+      }
+    }
+  }
+}
