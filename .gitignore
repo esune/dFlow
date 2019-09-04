@@ -170,3 +170,6 @@ __pycache__
 # Certificates
 *.crt
 *.key
+
+# nodejs
+**/node_modules
