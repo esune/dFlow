@@ -26,6 +26,63 @@
           "github_repo": "greenlight",
           "jenkinsFilePath": ".jenkins/Jenkinsfile",
           "uuid": "5b5606d9-1cbe-4dbe-8fd9-46305449748c"
+        },
+        "greenlight-demo": {
+          "name": "greenlight",
+          "version": "1.0.0",
+          "path": "./greenlight-demo",
+          "environments": {
+            "build": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "dev": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "test": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "prod": {
+              "namespace": "devex-bcgov-dap-tools"
+            }
+          }
+        },
+        "greenlight-agent": {
+          "name": "greenlight-agent",
+          "version": "1.0.0",
+          "path": "./greenlight-agent",
+          "environments": {
+            "build": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "dev": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "test": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "prod": {
+              "namespace": "devex-bcgov-dap-tools"
+            }
+          }
+        },
+        "greenlight": {
+          "name": "greenlight",
+          "version": "1.0.0",
+          "path": ".",
+          "environments": {
+            "build": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "dev": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "test": {
+              "namespace": "devex-bcgov-dap-tools"
+            },
+            "prod": {
+              "namespace": "devex-bcgov-dap-tools"
+            }
+          }
         }
       }
     }
