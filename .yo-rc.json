@@ -14,9 +14,6 @@
             "dev": {
               "namespace": "devex-bcgov-dap-tools"
             },
-            "test": {
-              "namespace": "devex-bcgov-dap-tools"
-            },
             "prod": {
               "namespace": "devex-bcgov-dap-tools"
             }
