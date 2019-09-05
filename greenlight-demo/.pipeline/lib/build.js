@@ -17,7 +17,7 @@ module.exports = (settings) => {
   // caddy runtime build
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/templates/caddy-runtime/caddy-runtime-build.json`, {
     'param': {
-      'NAME': 'caddy-runtime',
+      'NAME': 'caddy-runtime' + phases[phase].suffix,
       'GIT_REPO_URL': oc.git.http_url,
       'GIT_REF': oc.git.ref,
       'SOURCE_CONTEXT_DIR': '',
@@ -33,7 +33,7 @@ module.exports = (settings) => {
   // angular app build
   objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/templates/greenlight-angular/greenlight-angular-build.json`, {
     'param': {
-      'NAME': 'greenlight-angular',
+      'NAME': 'greenlight-angular' + phases[phase].suffix,
       'GIT_REPO_URL': oc.git.http_url,
       'GIT_REF': oc.git.ref,
       'OUTPUT_IMAGE_TAG': 'latest',
@@ -46,16 +46,23 @@ module.exports = (settings) => {
     }
   }));
 
-  // // final angular on caddy
-  // objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/templates/greenlight/greenlight.json`, {
-  //   'param': {
-  //     'NAME': phases[phase].name,
-  //     'SUFFIX': phases[phase].suffix,
-  //     'VERSION': phases[phase].tag,
-  //     'SOURCE_REPOSITORY_URL': oc.git.http_url,
-  //     'SOURCE_REPOSITORY_REF': oc.git.ref
-  //   }
-  // }));
+  // final angular on caddy
+  objects.push(...oc.processDeploymentTemplate(`${templatesLocalBaseUrl}/templates/greenlight/greenlight-build.json`, {
+    'param': {
+      'NAME': phases[phase].name + phases[phase].suffix,
+      'SOURCE_IMAGE_NAMESPACE': '',
+      'SOURCE_IMAGE_NAME': 'greenlight-angular',
+      'SOURCE_IMAGE_TAG': 'latest',
+      'RUNTIME_IMAGE_NAMESPACE': 'devex-bcgov-dap-tools',
+      'RUNTIME_IMAGE_NAME': 'caddy-runtime',
+      'RUNTIME_IMAGE_TAG': 'latest',
+      'OUTPUT_IMAGE_TAG': 'latest'
+      // 'SUFFIX': phases[phase].suffix,
+      // 'VERSION': phases[phase].tag,
+      // 'SOURCE_REPOSITORY_URL': oc.git.http_url,
+      // 'SOURCE_REPOSITORY_REF': oc.git.ref
+    }
+  }));
 
   oc.applyRecommendedLabels(objects, phases[phase].name, phase, phases[phase].changeId, phases[phase].instance)
   oc.applyAndBuild(objects)

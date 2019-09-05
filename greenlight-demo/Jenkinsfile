@@ -13,7 +13,7 @@ pipeline {
                     echo "${filesInThisCommitAsString}"
                     if (!currentBuild.rawBuild.getCauses()[0].toString().contains('UserIdCause') && !hasChangesInPath){
                         currentBuild.rawBuild.delete()
-                        error("No changes detected in the path ('^.jenkins/')")
+                        error("No changes detected in the path ('^.greenlight-demo/')")
                     }
                 }
                 echo "Aborting all running jobs ..."
