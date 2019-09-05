@@ -174,3 +174,6 @@ __pycache__
 # nodejs
 **/node_modules
 node_modules/
+
+# cicd pipeline
+!**/.pipeline/lib
