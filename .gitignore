@@ -170,3 +170,10 @@ __pycache__
 # Certificates
 *.crt
 *.key
+
+# nodejs
+**/node_modules
+node_modules/
+
+# cicd pipeline
+!**/.pipeline/lib

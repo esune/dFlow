@@ -12,7 +12,7 @@
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}",
         "labels": {
           "app": "services",
           "name": "${NAME}",
@@ -37,7 +37,7 @@
       "kind": "Route",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}",
         "labels": {
           "app": "services",
           "name": "${NAME}",
@@ -60,7 +60,7 @@
       "kind": "DeploymentConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}",
         "labels": {
           "app": "services",
           "name": "${NAME}",
@@ -89,9 +89,7 @@
             "type": "ImageChange",
             "imageChangeParams": {
               "automatic": true,
-              "containerNames": [
-                "${NAME}"
-              ],
+              "containerNames": ["${NAME}"],
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "${IMAGE_NAMESPACE}",
@@ -232,7 +230,7 @@
                 },
                 "volumeMounts": [
                   {
-                    "name": "${NAME}-config-volume",
+                    "name": "${NAME}${SUFFIX}-config-volume",
                     "mountPath": "${CONFIG_MOUNT_PATH}${CONFIG_FILE_NAME}",
                     "subPath": "${CONFIG_FILE_NAME}"
                   }
@@ -241,7 +239,7 @@
             ],
             "volumes": [
               {
-                "name": "${NAME}-config-volume",
+                "name": "${NAME}${SUFFIX}-config-volume",
                 "configMap": {
                   "name": "${NAME}-${CONFIG_MAP_NAME}",
                   "items": [
@@ -453,6 +451,19 @@
       "description": "The path to use to mount the config file.",
       "required": true,
       "value": "/etc/"
+    },
+    {
+      "name": "SUFFIX",
+      "displayName": "Suffix",
+      "description": "A name suffix used for all objects",
+      "required": false,
+      "value": ""
+    },
+    {
+      "name": "VERSION",
+      "displayName": "version",
+      "description": "A version used for the image tags",
+      "required": true
     },
     {
       "name": "CPU_LIMIT",

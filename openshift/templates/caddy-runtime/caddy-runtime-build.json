@@ -9,14 +9,15 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}"
+        "name": "${NAME}",
+        "shared": "true"
       }
     },
     {
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}${SUFFIX}",
         "labels": {
           "app": "${NAME}"
         }
@@ -45,7 +46,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${NAME}:${OUTPUT_IMAGE_TAG}"
+            "name": "${NAME}:${VERSION}"
           }
         },
         "triggers": [
@@ -86,13 +87,6 @@
       "value": ""
     },
     {
-      "name": "OUTPUT_IMAGE_TAG",
-      "displayName": "Output Image Tag",
-      "description": "The tag given to the built image.",
-      "required": true,
-      "value": "latest"
-    },
-    {
       "name": "SOURCE_IMAGE_KIND",
       "displayName": "Source Image Kind",
       "description": "The 'kind' (type) of the  source image; typically ImageStreamTag, or DockerImage.",
@@ -120,12 +114,25 @@
       "required": true,
       "value": "latest"
     },
-        {
+    {
       "name": "DOCKER_FILE_PATH",
       "displayName": "Docker File Path",
       "description": "The path to the docker file.",
       "required": true,
       "value": "docker/proxy/Dockerfile"
+    },
+    {
+      "name": "SUFFIX",
+      "displayName": "Suffix",
+      "description": "A name suffix used for all objects",
+      "required": false,
+      "value": ""
+    },
+    {
+      "name": "VERSION",
+      "displayName": "version",
+      "description": "A version used for the image tags",
+      "required": true
     }
   ]
 }
